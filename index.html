@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comfortaa', sans-serif;
+            background-color: transparent;
+            color: #054607;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 510px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        label {
+            font-size: 14px;
+            flex: 1;
+            text-align: left;
+            padding-right: 12px;
+        }
+        input[type="text"], input[type="tel"], input[type="date"], select {
+            flex: 2;
+            padding: 8px;
+            font-size: 14px;
+            color: #054607;
+            border: none;
+            border-bottom: 2px solid #498202;
+            background-color: transparent;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            border-bottom-color: #82A436;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="jewelUserInfoForm">
+            <div class="form-group">
+                <label for="jewelName">Name:</label>
+                <input type="text" id="jewelName" name="name">
+            </div>
+
+            <div class="form-group">
+                <label for="jewelGender">Gender:</label>
+                <select id="jewelGender" name="gender">
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="jewelAddress">Address:</label>
+                <input type="text" id="jewelAddress" name="address">
+            </div>
+
+            <div class="form-group">
+                <label for="jewelDob">Date of Birth:</label>
+                <input type="date" id="jewelDob" name="dob">
+            </div>
+
+            <div class="form-group">
+                <label for="jewelAge">Age:</label>
+                <input type="text" id="jewelAge" name="age">
+            </div>
+
+            <div class="form-group">
+                <label for="jewelEthnicity">Ethnicity:</label>
+                <input type="text" id="jewelEthnicity" name="ethnicity">
+            </div>
+
+            <div class="form-group">
+                <label for="jewelReligion">Religion:</label>
+                <input type="text" id="jewelReligion" name="religion">
+            </div>
+
+            <div class="form-group">
+                <label for="jewelMother">Mother:</label>
+                <input type="text" id="jewelMother" name="mother">
+            </div>
+
+            <div class="form-group">
+                <label for="jewelFather">Father:</label>
+                <input type="text" id="jewelFather" name="father">
+            </div>
+
+            <div class="form-group">
+                <label for="jewelContact">Emergency Contact:</label>
+                <input type="tel" id="jewelContact" name="contact">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Function to save input values to localStorage using "JEWEL" prefix
+        document.getElementById('jewelUserInfoForm').addEventListener('input', function(event) {
+            const input = event.target;
+            if (input.id) {
+                localStorage.setItem('JEWEL_' + input.id, input.value);
+            }
+        });
+
+        // Function to populate fields with stored values from localStorage using "JEWEL" prefix
+        window.onload = function() {
+            const formElements = document.querySelectorAll('#jewelUserInfoForm input, #jewelUserInfoForm select');
+            formElements.forEach(function(element) {
+                const storedValue = localStorage.getItem('JEWEL_' + element.id);
+                if (storedValue) {
+                    element.value = storedValue;
+                }
+            });
+        };
+    </script>
+</body>
+</html>
